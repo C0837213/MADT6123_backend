@@ -4,6 +4,18 @@ import * as model from './models.js'
 const { userModel, taskModel } = model;
 const routes = express.Router();
 
+routes.post("/auth", async function (req, res) {
+  const email = req.body.email;
+  const password = req.body.password;
+  userModel.findOne({ email, password }, (err, user) => {
+    if (err) {
+      res.status(400).send(`Error auth! Error : ${err.message}`);
+    } else {
+      res.json(user);
+    }
+  });
+});
+
 routes.get('/users', async function (req, res) {
     userModel.find({}, (err, users) => {
         if (err) {
