@@ -57,6 +57,10 @@ const projectSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  cost: {
+    type: String,
+    require: true,
+  },
 });
 
 const taskSchema = new mongoose.Schema({
