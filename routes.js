@@ -96,7 +96,7 @@ routes.post('/task/:pid', async function(req, res) {
     const projectId = req.params.pid;
     const task = req.body;
     projectModel.updateOne({_id: projectId }, {
-        $push: { task: task}
+        $push: { task: task }
     },(err,_result) => {
         if(err) {
             res.status(400).send(`Error add task with projectId: ${projectId}! Error : ${err.message}`)
@@ -126,6 +126,18 @@ routes.get("/projects", async function (req, res) {
     }
   });
 });
+
+routes.post("/projects/:id", async function(req, res) {
+    const projectId = req.params.id;
+    const project = req.body;
+    projectModel.updateOne({_id: projectId }, project, (err, _result) => {
+        if (err) {
+            res.status(400).send(`Error update project ${projectId}! Error: ${err.message}`)
+        } else {
+            res.json({ status: "success" })
+        }
+    })
+})
 
 routes.post("/projects", async function(req, res){
     const projectIn = new projectModel(req.body);
