@@ -1,10 +1,10 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   type: {
     type: String,
     required: true,
-    enum: ['admin', 'user']
+    enum: ["admin", "user"],
   },
   firstName: {
     type: String,
@@ -25,24 +25,47 @@ const userSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-  }
-})
+  },
+});
+
+const projectSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    require: true,
+  },
+  desc: {
+    type: String,
+    require: true,
+  },
+  startDate: {
+    type: Number,
+    require: true,
+  },
+  endDate: {
+    type: Number,
+    require: true,
+  },
+  assignee: {
+    type: Array,
+    default: [],
+  },
+});
 
 const taskSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   desc: {
     type: String,
     required: true,
   },
   startDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   endDate: {
-    type: Date,
+    type: String,
     required: true,
   },
   assignee: {
@@ -55,12 +78,13 @@ const taskSchema = new mongoose.Schema({
   completed: {
     type: Boolean,
     required: true,
-    default: false
+    default: false,
   },
   prerequisite: {
-    type: String
-  }
-})
+    type: String,
+  },
+});
 
-export const userModel = mongoose.model('users', userSchema) 
-export const taskModel = mongoose.model('tasks', taskSchema) 
+export const userModel = mongoose.model("users", userSchema);
+export const taskModel = mongoose.model("tasks", taskSchema);
+export const projectModel = mongoose.model("projects", projectSchema);

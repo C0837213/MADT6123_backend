@@ -1,7 +1,7 @@
 import express from 'express'
 import * as model from './models.js'
 
-const { userModel, taskModel } = model;
+const { userModel, taskModel, projectModel } = model;
 const routes = express.Router();
 
 routes.post("/auth", async function (req, res) {
@@ -92,6 +92,17 @@ routes.get('/tasks', async function (req, res) {
         }
     })
 })
+
+routes.post("/projects", async function(req, res){
+    const projectIn = new projectModel(req.body);
+    projectIn.save(err => {
+        if(err) {
+            res.status(400).send(`Error create project! Error: ${err.message}`)
+        } else {
+            res.json({ status:'success' })
+        }
+    })
+});
 
 routes.post('/tasks', async function (req, res) {
     const taskInstance = new taskModel(req.body)
