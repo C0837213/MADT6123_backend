@@ -49,6 +49,10 @@ const projectSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  task: {
+    type: Array,
+    default: [],
+  },
 });
 
 const taskSchema = new mongoose.Schema({
