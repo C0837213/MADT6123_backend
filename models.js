@@ -53,6 +53,10 @@ const projectSchema = new mongoose.Schema({
     type: Array,
     default: [],
   },
+  status: {
+    type: String,
+    require: true,
+  },
 });
 
 const taskSchema = new mongoose.Schema({
