@@ -87,6 +87,12 @@ const taskSchema = new mongoose.Schema({
   prerequisite: {
     type: String,
   },
+  completedAt: {
+    type: String,
+  },
+  workingHours: {
+    type: String,
+  }
 });
 
 export const userModel = mongoose.model("users", userSchema);
